@@ -169,7 +169,7 @@ else
 fi
 
 NAME=$URL_VENUE"_stocklocate_"$STR_STOCK_DATE".txt"
-BASE_URL=ftp://anonymous:@emi.nasdaq.com/ITCH/Stock_Locate_Codes/
+BASE_URL=https://anonymous:@emi.nasdaq.com/ITCH/Stock_Locate_Codes/
 URL=$BASE_URL$NAME
 
 FOUND_URL=0;
