@@ -1,5 +1,6 @@
 #include <OrderPool.hpp>
 
+using namespace yft;
 Order OrderPool::searchOrderPool(id_type idOrder){
     auto foundElement = pool.find(idOrder);
     Order foundOrder;

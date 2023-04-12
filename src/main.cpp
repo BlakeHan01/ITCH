@@ -24,7 +24,7 @@
  * @param[in] name string of the stock you want the reconstruct the book
  *
  */
-
+using namespace yft;
 int main(int argc, char * argv[]){
 
     if(argc<5){
@@ -42,14 +42,21 @@ int main(int argc, char * argv[]){
     std::string outMessageFileName = outMessageDirectory+nameFile+"_"+stock+"_message.csv";
     std::string stockPadded = stock;
     stockPadded.insert(stockPadded.end(), 8 - stockPadded.size(), ' ');
-
-    BookConstructor BookConstructor(pathFile,
+    BookConstructor* book_constructor = nullptr;
+    std::string mode = "file";
+    if(mode=="live")
+    {
+        ;
+    }
+    else if(mode == "file"){
+        IReader* historical_reader = new Reader(pathFile, stockPadded);
+        book_constructor = new BookConstructor(historical_reader,
         outMessageFileName,
         outBookFileName,
-        stockPadded,
         levels);
+        book_constructor->start();
+    }
 
-    BookConstructor.start();
 
     return 0;
 }

@@ -1,5 +1,6 @@
 #include "Message.hpp"
 
+using namespace yft;
 Message::Message(const char& _type,
     const id_type& _id,
     const time_type& _timestamp):

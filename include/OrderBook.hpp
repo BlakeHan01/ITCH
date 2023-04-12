@@ -1,6 +1,4 @@
-#ifndef _OrderBook_H_
-#define _OrderBook_H_
-
+# pragma once
 #include <map>
 #include <string>
 #include <sstream>
@@ -15,42 +13,43 @@
  *
  */
 
-class OrderBook{
-    time_type timestamp;
-    std::map<price_type, size_type> buySide;
-    std::map<price_type, size_type> sellSide;
+namespace yft {
+    class OrderBook {
+        time_type timestamp;
+        // value --> order: id, size
+        std::map<price_type, size_type> buySide;
+        std::map<price_type, size_type> sellSide;
 
     public:
-    OrderBook(void) = default;
+        OrderBook(void) = default;
 
-    /**
-     * Make comma-separated string from information available
-     * in the OrderBook about the best bid/ask prices and corresponding sizes up to number of levels :
-     * "1.BidPrice, 1.BidSize,1.AskPrice,1.AskSize,..,level.BidPrice, level.BidSize,level.AskPrice,level.AskSize"
-     *
-     * @param[in] level up to what level to write the price/size tuple.
-     *
-     */
-    std::string getString(const size_t &) const;
+        /**
+         * Make comma-separated string from information available
+         * in the OrderBook about the best bid/ask prices and corresponding sizes up to number of levels :
+         * "1.BidPrice, 1.BidSize,1.AskPrice,1.AskSize,..,level.BidPrice, level.BidSize,level.AskPrice,level.AskSize"
+         *
+         * @param[in] level up to what level to write the price/size tuple.
+         *
+         */
+        std::string getString(const size_t &) const;
 
-    /**
-     * Performs actions on the double map representing the OrderBook
-     *
-     * @param[in] price modify map corresponding to price
-     * @param[in] size add (or delete if size is negative) the size corresponding to price
-     * @param[in] side 0 for buy side and 1 for sell side.
-     *
-     */
-    void modifySize(price_type, size_type, side_type);
-    void setTimeStamp(const time_type &);
+        /**
+         * Performs actions on the double map representing the OrderBook
+         *
+         * @param[in] price modify map corresponding to price
+         * @param[in] size add (or delete if size is negative) the size corresponding to price
+         * @param[in] side 0 for buy side and 1 for sell side.
+         *
+         */
+        void modifySize(price_type, size_type, side_type);
 
-    /**
-     * Check if the biggest bid price is less than smallest ask
-     *
-     * @return bool value of the check. 1 OK, 0 KO.
-     */
-    bool checkBookConsistency(void);
-};
+        void setTimeStamp(const time_type &);
 
-
-#endif /*_OrderBook_H_*/
+        /**
+         * Check if the biggest bid price is less than smallest ask
+         *
+         * @return bool value of the check. 1 OK, 0 KO.
+         */
+        bool checkBookConsistency(void);
+    };
+}

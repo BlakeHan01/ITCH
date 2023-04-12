@@ -1,5 +1,6 @@
 #include <Writer.hpp>
 
+using namespace yft;
 Writer::Writer(const std::string& _fileName):fileName(_fileName){
   file.open(_fileName);
   if(!file.is_open()){

@@ -1,5 +1,7 @@
 #include <Reader.hpp>
 
+using namespace yft;
+
 Reader::Reader(const std::string &_fileName, const std::string &_stock):
     fileName(_fileName), stock(_stock){
         file.open(fileName);
@@ -432,7 +434,7 @@ Message Reader::createMessage(void){
     return msg;
 }
 
-bool Reader::eof(void){
+bool Reader::ebasof(void){
     return file.eof();
 }
 

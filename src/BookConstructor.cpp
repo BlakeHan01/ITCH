@@ -11,12 +11,12 @@
  * @param[in] _levels selected number of levels for order book.
  * @param[out] outputBookCSV, outputMessageCSV destination files to write order book and stream message.
  */
-BookConstructor::BookConstructor(const std::string &inputMessageCSV,
+using namespace yft;
+BookConstructor::BookConstructor(IReader* reader,
     const std::string &outputMessageCSV,
     const std::string &outputBookCSV,
-    const std::string &_stock,
     const size_t &_levels):
-    message_reader(inputMessageCSV, _stock),
+    message_reader(reader),
     messageWriter(outputMessageCSV),
     bookWriter(outputBookCSV),
     levels(_levels){
@@ -35,6 +35,7 @@ BookConstructor::BookConstructor(const std::string &inputMessageCSV,
  * For debug purposes print to std output orders still present at closure. There shouldn't be any.
  */
 BookConstructor::~BookConstructor(){
+    delete message_reader;
     if(!pool.isEmpty()){
         std::cout << "Id's of orders remaining in the book after the market closure: ";
         pool.printIds();
@@ -47,7 +48,7 @@ BookConstructor::~BookConstructor(){
  * calls iteratevely the next method untile the Reader has completed the reading.
  */
 void BookConstructor::start(void){
-    while(!message_reader.eof() and message_reader.isValid()){
+    while(!message_reader->eof() and message_reader->isValid()){
         next();
     }
 }
@@ -59,7 +60,7 @@ void BookConstructor::start(void){
  *
  */
 void BookConstructor::next(){
-    message = message_reader.createMessage();
+    message = message_reader->createMessage();
     if(!message.isEmpty()){
         bool validMessage = updateMessage();
         if(validMessage){

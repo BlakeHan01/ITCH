@@ -1,5 +1,6 @@
 #include <OrderBook.hpp>
 
+using namespace yft;
 std::string OrderBook::getString(const size_t &level) const {
 
     size_t buyDepth = buySide.size(); // The number of bid prices available in the book

@@ -1,6 +1,4 @@
-#ifndef BOOKCONSTRUCTOR_H_
-#define BOOKCONSTRUCTOR_H_
-
+# pragma once
 #include <Message.hpp>
 #include <Order.hpp>
 #include <OrderPool.hpp>
@@ -9,29 +7,40 @@
 #include <Writer.hpp>
 
 
-class BookConstructor{
-private:
-    Message message;
-    OrderBook book;
-    OrderPool pool;
-    Reader message_reader;
-    Writer messageWriter;
-    Writer bookWriter;
-    Writer parserWriter;
-    size_t levels;
-public:
-    BookConstructor(const std::string &inputMessageCSV,
-                    const std::string &outputMessageCSV,
-                    const std::string &outputBookCSV,
-                    const std::string &_stock,
-                    const size_t &_levels);
-    ~BookConstructor();
-    void start(void);
-    void next(void);
-    bool updateMessage(void);
-    void updateBook(void);
-    void updatePool(void);
-    void WriteBookAndMessage(void);
-};
+namespace yft {
+    class IReader;
 
-#endif /* BOOKCONSTRUCTOR_H_ */
+    class BookConstructor {
+    private:
+        Message message;
+        OrderBook book;
+        OrderPool pool;
+        IReader* message_reader;
+        Writer messageWriter;
+        Writer bookWriter;
+        Writer parserWriter;
+        size_t levels;
+    public:
+        BookConstructor(IReader* reader,
+                        const std::string &outputMessageCSV,
+                        const std::string &outputBookCSV,
+                        const size_t &_levels);
+
+//        BookConstructor(IReader* reader);
+
+        ~BookConstructor();
+
+        void start();
+
+        void next();
+
+        bool updateMessage();
+
+        void updateBook();
+
+        void updatePool();
+
+        void WriteBookAndMessage();
+
+    };
+}

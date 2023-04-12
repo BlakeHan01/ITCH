@@ -1,5 +1,6 @@
 #include "Order.hpp"
 
+using namespace yft;
 Order::Order(id_type _id,
             bool _side,
             size_type _size,

@@ -1,5 +1,4 @@
-#ifndef UTILITY_H
-#define UTILITY_H
+#pragma once
 
 #include <iostream>
 #include <climits>
@@ -11,16 +10,18 @@
  * @file utility.cpp
  */
 
-typedef double price_type;
-typedef long size_type;
-typedef uint64_t id_type;
-typedef long long time_type;
-typedef bool side_type;
+//namespace yft {
+//    namespace utility {
+        typedef double price_type;
+        typedef long size_type;
+        typedef uint64_t id_type;
+        typedef long long time_type;
+        typedef bool side_type;
 
-extern id_type ID_DEFAULT;
-extern side_type SIDE_DEFAULT;
-extern size_type SIZE_DEFAULT;
-extern price_type PRICE_DEFAULT;
+        extern id_type ID_DEFAULT;
+        extern side_type SIDE_DEFAULT;
+        extern size_type SIZE_DEFAULT;
+        extern price_type PRICE_DEFAULT;
 
 /**
  * Utility function for swapping 16 bits from little endian to big endian format.
@@ -31,7 +32,7 @@ extern price_type PRICE_DEFAULT;
  * @return uint16_t value of the swapped number
  * @warning Assumes that the machine is little endian and hence the swapping is indeed necessary. Otherwise no swapping is needed. This check is not performed.
  */
-uint16_t bswap_16(uint16_t value);
+        uint16_t bswap_16(uint16_t value);
 
 /**
  * Utility function for swapping 32 bits from little endian to big endian format.
@@ -42,7 +43,7 @@ uint16_t bswap_16(uint16_t value);
  * @return uint32_t value of the swapped number
  * @warning Assumes that the machine is little endian and hence the swapping is indeed necessary. Otherwise no swapping is needed. This check is not performed.
  */
-uint32_t bswap_32(uint32_t value);
+        uint32_t bswap_32(uint32_t value);
 
 /**
  * Utility function for swapping 64 bits from little endian to big endian format.
@@ -53,7 +54,7 @@ uint32_t bswap_32(uint32_t value);
  * @return uint64_t value of the swapped number
  * @warning Assumes that the machine is little endian and hence the swapping is indeed necessary. Otherwise no swapping is needed. This check is not performed.
  */
-uint64_t bswap_64(uint64_t value);
+        uint64_t bswap_64(uint64_t value);
 
 /**
  * Utility function for parsing 16 bits data.
@@ -64,7 +65,7 @@ uint64_t bswap_64(uint64_t value);
  * @return uint16_t number corresponding to the swapped data (16 bits) pointed by the char array
  * @warning Assumes that the machine is little endian and hence the swapping is indeed necessary. Otherwise no swapping is needed. This check is not performed.
  */
-uint16_t parse_uint16(char * a);
+        uint16_t parse_uint16(char *a);
 
 /**
  * Utility function for parsing 32 bits data.
@@ -75,7 +76,7 @@ uint16_t parse_uint16(char * a);
  * @return uint32_t number corresponding to the swapped data (32 bits) pointed by the char array
  * @warning Assumes that the machine is little endian and hence the swapping is indeed necessary. Otherwise no swapping is needed. This check is not performed.
  */
-uint32_t parse_uint32(char * a);
+        uint32_t parse_uint32(char *a);
 
 /**
  * Utility function for parsing 64 bits data.
@@ -86,7 +87,7 @@ uint32_t parse_uint32(char * a);
  * @return uint64_t number corresponding to the swapped data (64 bits) pointed by the char array
  * @warning Assumes that the machine is little endian and hence the swapping is indeed necessary. Otherwise no swapping is needed. This check is not performed.
  */
-uint64_t parse_uint64(char * a);
+        uint64_t parse_uint64(char *a);
 
 /**
  * Utility function for parsing 48 bits data (for time stamp)
@@ -97,7 +98,7 @@ uint64_t parse_uint64(char * a);
  * @return uint64_t number corresponding to the swapped data (48 bits) pointed by the char array
  * @warning Assumes that the machine is little endian and hence the swapping is indeed necessary. Otherwise no swapping is needed. This check is not performed.
  */
-uint64_t parse_ts(char * a);
+        uint64_t parse_ts(char *a);
 
 /**
  * Simple utility function for get the file name from a path string
@@ -105,6 +106,6 @@ uint64_t parse_ts(char * a);
  * @param[in] path string of the path of the file. Should also work for the separator "\\" (WINDOWS).
  * @return nameFile string of the file name.
  */
-std::string getFileName(const std::string& s);
-
-#endif /* UTILITY_H_ */
+        std::string getFileName(const std::string &s);
+//    }
+//}
